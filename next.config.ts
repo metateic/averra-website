@@ -1,8 +1,13 @@
-import type { NextConfig } from "next";
+import path from "node:path"
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.resolve(process.cwd(), ".."),
+  },
   output: "export",
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  transpilePackages: ["@metateic/ui"],
   images: {
     unoptimized: true,
   },
