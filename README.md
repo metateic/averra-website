@@ -20,6 +20,10 @@ The form posts the visitor's email to the URL in `NEXT_PUBLIC_DEMO_FORM_ENDPOINT
 
 Locally, put it in `.env.local`. For deploys, add a repository **variable** named `DEMO_FORM_ENDPOINT`.
 
+## Analytics
+
+Off by default. To turn it on, add repository **variables** `ANALYTICS_SRC` (the provider's script URL) and either `ANALYTICS_DOMAIN` (Plausible) or `ANALYTICS_WEBSITE_ID` (Umami).
+
 ## Deployment
 
 `.github/workflows/deploy.yml` builds every pull request and deploys `main` to GitHub Pages. In repo **Settings → Pages**, the source must be **GitHub Actions** and the custom domain `averra.metateic.io`.

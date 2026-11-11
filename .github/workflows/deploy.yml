@@ -51,6 +51,10 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
           # Where the demo request form posts. Set as a repository variable.
           NEXT_PUBLIC_DEMO_FORM_ENDPOINT: ${{ vars.DEMO_FORM_ENDPOINT }}
+          # Optional cookieless analytics; nothing loads unless ANALYTICS_SRC is set.
+          NEXT_PUBLIC_ANALYTICS_SRC: ${{ vars.ANALYTICS_SRC }}
+          NEXT_PUBLIC_ANALYTICS_DOMAIN: ${{ vars.ANALYTICS_DOMAIN }}
+          NEXT_PUBLIC_ANALYTICS_WEBSITE_ID: ${{ vars.ANALYTICS_WEBSITE_ID }}
 
       - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request'

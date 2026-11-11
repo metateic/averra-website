@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { SkipLink, ThemeScript } from "@metateic/ui"
+import { Analytics, SkipLink, ThemeScript } from "@metateic/ui"
 import "./globals.css"
 
 const title = "Averra — CARM Reconciliation Automation"
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     type: "website",
   },
-  twitter: { card: "summary", title, description: summary },
+  twitter: { card: "summary_large_image", title, description: summary },
 }
 
 export const viewport: Viewport = {
@@ -40,6 +40,11 @@ export default function RootLayout({
     <html lang="en-CA" className="h-full" suppressHydrationWarning>
       <head>
         <ThemeScript />
+        <Analytics
+          src={process.env.NEXT_PUBLIC_ANALYTICS_SRC}
+          domain={process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN}
+          websiteId={process.env.NEXT_PUBLIC_ANALYTICS_WEBSITE_ID}
+        />
       </head>
       <body className="flex min-h-full flex-col">
         <SkipLink />
