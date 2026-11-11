@@ -9,7 +9,7 @@ const LINES = [
 /** Static picture of what a reconciled statement looks like. Figures are made up. */
 export default function ReconciliationPreview() {
   return (
-    <figure className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-30px_hsl(222_47%_11%/0.35)]">
+    <figure className="overflow-hidden rounded-card border border-border bg-card shadow-[0_24px_60px_-34px_hsl(161_35%_9%/0.45)]">
       <div className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4">
         <p className="text-sm font-semibold text-foreground">Statement of account</p>
         <p className="text-xs text-muted-foreground">3 matched, 2 to review</p>
@@ -33,7 +33,7 @@ export default function ReconciliationPreview() {
           {LINES.map((line) => {
             const review = line.state === "review"
             return (
-              <tr key={line.item + line.ref + line.amount} className={`border-t border-border ${review ? "bg-primary/[0.06]" : ""}`}>
+              <tr key={line.item + line.ref + line.amount} className={`border-t border-border ${review ? "bg-flag-surface" : ""}`}>
                 <td className="py-3 pr-1 pl-3 sm:pl-5">
                   <span className="font-medium text-foreground">{line.item}</span>
                   <span className="hidden text-xs whitespace-nowrap text-muted-foreground tabular-nums min-[25rem]:block">{line.ref}</span>
@@ -41,12 +41,12 @@ export default function ReconciliationPreview() {
                 <td className="px-2 py-3 text-right text-foreground tabular-nums">{line.amount}</td>
                 <td className="py-3 pr-3 pl-1 text-right sm:pr-5">
                   {review ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-primary px-2 py-0.5 text-xs font-medium whitespace-nowrap text-foreground">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span className="inline-flex items-center gap-1.5 rounded-control border border-flag px-2 py-0.5 text-xs font-medium whitespace-nowrap text-flag">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flag" />
                       {line.note}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-medium whitespace-nowrap text-primary">
                       <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 8.5l3.2 3L13 4.5" />
                       </svg>

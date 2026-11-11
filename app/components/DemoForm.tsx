@@ -21,6 +21,7 @@ export default function DemoForm() {
       <form onSubmit={onSubmit} className="flex flex-col gap-3 sm:flex-row">
         <TextField
           className="flex-1"
+          tone="inverse"
           label="Work email"
           hideLabel
           type="email"
@@ -29,12 +30,13 @@ export default function DemoForm() {
           placeholder="you@company.com"
           required
         />
-        <Button type="submit" disabled={status === "sending"} className="py-2.5">
-          {status === "sending" ? "Sending…" : "Request demo"}
+        <Button type="submit" variant="inverse" disabled={status === "sending"} className="py-2.5">
+          {status === "sending" ? "Sending…" : "Request a demo"}
         </Button>
       </form>
       <FormStatus
         status={status}
+        tone="inverse"
         className="mt-3"
         success="Request received. We'll reply within one business day."
         error="Your request didn't send. Try again in a moment."

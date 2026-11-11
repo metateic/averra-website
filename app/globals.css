@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/ibm-plex-sans";
 @import "@metateic/ui/themes/averra.css";
 @import "@metateic/ui/themes/base.css";
 @source "../node_modules/@metateic/ui/src";
