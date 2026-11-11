@@ -1,34 +1,46 @@
 "use client"
 
+import { Button, FormStatus, TextField, useSubmit } from "@metateic/ui"
+
+// Any endpoint that accepts a form POST and answers 2xx (Formspree, Loops, a serverless function).
+const endpoint = process.env.NEXT_PUBLIC_DEMO_FORM_ENDPOINT
+
 export default function DemoForm() {
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const form = e.currentTarget
-    const email = new FormData(form).get("email") as string
-    // Replace with your form endpoint (e.g. Formspree, Loops, etc.)
-    console.log("Demo requested:", email)
-    form.reset()
-    alert("Thanks — we'll be in touch within one business day.")
-  }
+  const { status, onSubmit } = useSubmit(async (form) => {
+    if (!endpoint) throw new Error("NEXT_PUBLIC_DEMO_FORM_ENDPOINT is not set")
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new FormData(form),
+    })
+    if (!response.ok) throw new Error(`Demo request failed with status ${response.status}`)
+  })
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
-    >
-      <input
-        type="email"
-        name="email"
-        placeholder="you@company.com"
-        required
-        className="flex-1 rounded-md border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+    <div className="mx-auto mt-8 max-w-md">
+      <form onSubmit={onSubmit} className="flex flex-col gap-3 sm:flex-row">
+        <TextField
+          className="flex-1"
+          tone="inverse"
+          label="Work email"
+          hideLabel
+          type="email"
+          name="email"
+          autoComplete="email"
+          placeholder="you@company.com"
+          required
+        />
+        <Button type="submit" variant="inverse" disabled={status === "sending"} className="py-2.5">
+          {status === "sending" ? "Sending…" : "Request a demo"}
+        </Button>
+      </form>
+      <FormStatus
+        status={status}
+        tone="inverse"
+        className="mt-3"
+        success="Request received. We'll reply within one business day."
+        error="Your request didn't send. Try again in a moment."
       />
-      <button
-        type="submit"
-        className="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-dark"
-      >
-        Request demo
-      </button>
-    </form>
+    </div>
   )
 }

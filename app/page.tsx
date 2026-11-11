@@ -6,8 +6,10 @@ import {
   SiteFooter,
   SiteHeader,
   Steps,
+  ThemeToggle,
 } from "@metateic/ui"
 import DemoForm from "./components/DemoForm"
+import ReconciliationPreview from "./components/ReconciliationPreview"
 
 const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
@@ -17,15 +19,15 @@ const NAV_LINKS = [
 const PAIN_POINTS = [
   {
     title: "SOA PDFs aren't spreadsheets",
-    body: "CARM statements arrive as unstructured PDFs. Manually copying figures into a reconciliation sheet takes hours and invites transcription errors.",
+    body: "CARM statements arrive as PDFs. Copying the figures into a reconciliation sheet takes hours and invites transcription errors.",
   },
   {
     title: "Matching transactions is tedious",
-    body: "Mapping hundreds of B3 entries, amendments, and interest charges to broker invoices line by line is time-consuming work that adds no analytical value.",
+    body: "Mapping hundreds of B3 entries, amendments, and interest charges to broker invoices line by line is slow work that tells you nothing new.",
   },
   {
     title: "Exceptions hide in the noise",
-    body: "Duplicate charges, unexplained credits, and post-statement transactions are easy to miss in a spreadsheet — and costly when they slip through.",
+    body: "Duplicate charges, unexplained credits, and post-statement transactions are easy to miss in a spreadsheet, and costly when they slip through.",
   },
 ]
 
@@ -37,8 +39,8 @@ const STEPS = [
   },
   {
     number: "02",
-    title: "Averra matches and flags automatically",
-    body: "Our engine parses your documents, reconciles transactions against your broker invoices, and surfaces every exception that needs attention.",
+    title: "Averra matches and flags",
+    body: "Averra reads both files, reconciles each transaction against your broker invoices, and lists every exception that needs attention.",
   },
   {
     number: "03",
@@ -50,7 +52,7 @@ const STEPS = [
 const FEATURES = [
   {
     title: "AI-assisted PDF parsing",
-    body: "Extracts key figures from CARM SOA PDFs even when formatting changes between periods — no manual re-keying.",
+    body: "Extracts the key figures from CARM SOA PDFs, even when the formatting changes between periods. Nothing is re-keyed by hand.",
   },
   {
     title: "Automatic transaction matching",
@@ -62,7 +64,7 @@ const FEATURES = [
   },
   {
     title: "Multi-RM support",
-    body: "Manage multiple CARM importer accounts under one organisation — each with its own statement history and GL mapping.",
+    body: "Manage several CARM importer accounts under one organisation, each with its own statement history and GL mapping.",
   },
   {
     title: "Journal entry export",
@@ -70,7 +72,7 @@ const FEATURES = [
   },
   {
     title: "Full audit trail",
-    body: "Every match, exception resolution, and approval is logged with a timestamp and user — no more wondering what changed.",
+    body: "Every match, exception resolution, and approval is logged with a timestamp and the person who made it.",
   },
 ]
 
@@ -79,46 +81,46 @@ export default function Home() {
     <>
       <SiteHeader
         wordmark="Averra"
+        logo={{ src: "/brand/averra-logo.svg", darkSrc: "/brand/averra-logo-dark.svg", alt: "Averra", className: "h-7" }}
         links={NAV_LINKS}
-        cta={{ label: "Request demo", href: "#request-demo" }}
+        cta={{ label: "Request a demo", href: "#request-demo" }}
+        extra={<ThemeToggle />}
+        mobileNav
       />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <Hero
           eyebrow="Built for Canadian importers on CARM"
-          title={
-            <>
-              Stop reconciling CARM
-              <br />
-              <span className="text-primary">by hand.</span>
-            </>
-          }
-          lede="Averra automates your monthly CARM statement reconciliation — parsing your SOA, matching transactions against broker invoices, and flagging every exception that needs review. What used to take days takes minutes."
+          title="Stop reconciling CARM by hand."
+          align="start"
+          aside={<ReconciliationPreview />}
+          lede="Averra reconciles your monthly CARM statement for you. It reads the SOA, matches each transaction to a broker invoice, and flags the exceptions that need a person. What used to take days takes minutes."
           primary={{ href: "#request-demo", label: "Request a demo" }}
           secondary={{ href: "#how-it-works", label: "See how it works" }}
         />
-        <Section eyebrow="The problem" title="Manual CARM reconciliation doesn't scale" muted>
-          <CardGrid items={PAIN_POINTS} />
+        <Section title="Manual CARM reconciliation doesn't scale" align="start" muted>
+          <CardGrid items={PAIN_POINTS} variant="plain" />
         </Section>
         <Section
           id="how-it-works"
-          eyebrow="How it works"
           title="Three steps to a closed period"
+          align="start"
         >
           <Steps items={STEPS} />
         </Section>
         <Section
           id="features"
-          eyebrow="Features"
           title="Everything you need for CARM reconciliation"
+          align="start"
           muted
         >
-          <CardGrid items={FEATURES} />
+          <CardGrid items={FEATURES} variant="plain" />
         </Section>
         <CtaPanel
           id="request-demo"
           title="See Averra in action"
           lede="We're working with a small group of Canadian importers in early access. Request a demo and we'll be in touch within one business day."
           note="No spam. No commitment."
+          tone="inverse"
         >
           <DemoForm />
         </CtaPanel>
