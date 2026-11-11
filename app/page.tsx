@@ -81,6 +81,7 @@ export default function Home() {
     <>
       <SiteHeader
         wordmark="Averra"
+        logo={{ src: "/brand/averra-logo.svg", darkSrc: "/brand/averra-logo-dark.svg", alt: "Averra", className: "h-7" }}
         links={NAV_LINKS}
         cta={{ label: "Request a demo", href: "#request-demo" }}
         extra={<ThemeToggle />}

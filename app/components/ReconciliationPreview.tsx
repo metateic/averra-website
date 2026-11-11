@@ -9,7 +9,7 @@ const LINES = [
 /** Static picture of what a reconciled statement looks like. Figures are made up. */
 export default function ReconciliationPreview() {
   return (
-    <figure className="overflow-hidden rounded-card border border-border bg-card shadow-[0_24px_60px_-34px_hsl(161_35%_9%/0.45)]">
+    <figure className="overflow-hidden rounded-card border border-border bg-card shadow-[0_24px_60px_-34px_rgb(11_21_48/0.45)]">
       <div className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4">
         <p className="text-sm font-semibold text-foreground">Statement of account</p>
         <p className="text-xs text-muted-foreground">3 matched, 2 to review</p>
