@@ -1,9 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource-variable/geist";
 @import "@metateic/ui/themes/averra.css";
+@import "@metateic/ui/themes/base.css";
 @source "../node_modules/@metateic/ui/src";
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  -webkit-font-smoothing: antialiased;
-}

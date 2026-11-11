@@ -1,22 +1,33 @@
-import type { Metadata } from "next"
-import { Geist } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { SkipLink, ThemeScript } from "@metateic/ui"
 import "./globals.css"
 
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
-})
+const title = "Averra — CARM Reconciliation Automation"
+const summary =
+  "Stop reconciling CARM by hand. Averra matches transactions, flags exceptions, and exports journal entries automatically."
 
 export const metadata: Metadata = {
-  title: "Averra — CARM Reconciliation Automation",
+  metadataBase: new URL("https://averra.metateic.io"),
+  title,
   description:
     "Averra automates monthly CARM statement reconciliation for Canadian importers. Upload your SOA and transaction CSV, and get a matched, exception-flagged reconciliation in minutes.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Averra — CARM Reconciliation Automation",
-    description:
-      "Stop reconciling CARM by hand. Averra matches transactions, flags exceptions, and exports journal entries automatically.",
+    title,
+    description: summary,
+    url: "/",
+    siteName: "Averra",
+    locale: "en_CA",
     type: "website",
   },
+  twitter: { card: "summary", title, description: summary },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b111e" },
+  ],
 }
 
 export default function RootLayout({
@@ -25,8 +36,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${geist.variable} h-full`}>
-      <body className="min-h-full flex flex-col font-[var(--font-geist),system-ui,sans-serif]">
+    // data-theme is set by ThemeScript before hydration
+    <html lang="en-CA" className="h-full" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <SkipLink />
         {children}
       </body>
     </html>

@@ -14,6 +14,12 @@ npm run dev    # http://localhost:3000
 
 `npm run build` writes the static site to `out/`.
 
+## Demo request form
+
+The form posts the visitor's email to the URL in `NEXT_PUBLIC_DEMO_FORM_ENDPOINT`. Any service that accepts a form POST and answers with a 2xx status works (Formspree, Loops, a serverless function). Until it is set, the form shows an error instead of pretending the request was sent.
+
+Locally, put it in `.env.local`. For deploys, add a repository **variable** named `DEMO_FORM_ENDPOINT`.
+
 ## Deployment
 
 `.github/workflows/deploy.yml` builds every pull request and deploys `main` to GitHub Pages. In repo **Settings → Pages**, the source must be **GitHub Actions** and the custom domain `averra.metateic.io`.

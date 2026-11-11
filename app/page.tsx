@@ -6,8 +6,10 @@ import {
   SiteFooter,
   SiteHeader,
   Steps,
+  ThemeToggle,
 } from "@metateic/ui"
 import DemoForm from "./components/DemoForm"
+import ReconciliationPreview from "./components/ReconciliationPreview"
 
 const NAV_LINKS = [
   { label: "How it works", href: "#how-it-works" },
@@ -81,17 +83,15 @@ export default function Home() {
         wordmark="Averra"
         links={NAV_LINKS}
         cta={{ label: "Request demo", href: "#request-demo" }}
+        extra={<ThemeToggle />}
+        mobileNav
       />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <Hero
           eyebrow="Built for Canadian importers on CARM"
-          title={
-            <>
-              Stop reconciling CARM
-              <br />
-              <span className="text-primary">by hand.</span>
-            </>
-          }
+          title="Stop reconciling CARM by hand."
+          align="start"
+          aside={<ReconciliationPreview />}
           lede="Averra automates your monthly CARM statement reconciliation — parsing your SOA, matching transactions against broker invoices, and flagging every exception that needs review. What used to take days takes minutes."
           primary={{ href: "#request-demo", label: "Request a demo" }}
           secondary={{ href: "#how-it-works", label: "See how it works" }}
